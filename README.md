@@ -1,7 +1,11 @@
 # SQL
-LEETCODE SQL PROBLEM SOLVING
+Leetcode SQL Problem Solving
 
-I AM LOOKING TO SOLVE THE SAME PROBLEM IN DIFFERENT WAYS FOR PRACTICE
+I try to solve the same problem with multiple approaches to see which one would be more efficient.
 
-LIST OF PROBLEMS SOLVED:
+List of Problems Solved:
+
+
+My LC Profile:
+
 
