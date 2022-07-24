@@ -15,3 +15,8 @@ WHERE ID IN (SELECT E1.ID
                 ON E1.MANAGERID = E2.ID
                -- WHERE E1.MANAGERID IS NOT NULL
                 WHERE E1.SALARY > E2.SALARY)
+                
+--APPROACH 3: USING SUBQUERY (COMPARATIVELY SLOWER THAN JOINS)
+select name as Employee
+from Employee e
+where salary > (select salary from Employee m where e.managerid = m.id)
