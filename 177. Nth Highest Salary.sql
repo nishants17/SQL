@@ -1,0 +1,27 @@
+-- APPROACH 1: USING DENSE_RANK() WINDOW FUNCTION
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+    RETURN (
+        /* Write your T-SQL query statement below. */
+        SELECT MAX(SALARY)
+        FROM (SELECT SALARY, DENSE_RANK() OVER (ORDER BY SALARY DESC) AS RN
+              FROM EMPLOYEE E1) AS TEMP
+        WHERE TEMP.RN = @N
+        
+    );
+END
+
+-- APPROACH 2: USING OFFSET AND FETCH (COMPARATIVELY SLOWER)
+-- DISTINCT KEYWORD IS VERY IMPORTANT HERE
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+SET @N = @N - 1
+    RETURN (
+        /* Write your T-SQL query statement below. */
+        SELECT DISTINCT SALARY
+        FROM EMPLOYEE 
+        ORDER BY SALARY DESC 
+        OFFSET @N ROWS 
+        FETCH NEXT 1 ROW ONLY
+)
+        END
