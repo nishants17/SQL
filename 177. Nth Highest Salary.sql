@@ -25,3 +25,15 @@ SET @N = @N - 1
         FETCH NEXT 1 ROW ONLY
 )
         END
+
+-- APPROACH 3: FINDING COUNT OF SALARIES GREATER THAN NTH SALARY (N-1 SALARIES WILL BE GREATER THAN NTH SALARY)
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+    RETURN (select distinct e1.salary 
+            from Employee e1 
+            where @N-1 = (select count(distinct e2.Salary) 
+                          from Employee e2 
+                          where e1.Salary < e2.Salary)
+
+)
+        END
