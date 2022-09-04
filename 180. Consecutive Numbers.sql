@@ -1,0 +1,7 @@
+SELECT ID , COUNT(FLAG) AS CNT FROM (
+    SELECT ID , (ID - RN) AS FLAG FROM (
+        SELECT ID, RANK() OVER (PARTITION BY NUM ORDER BY ID) AS RN
+        FROM LOGS                     ) A
+                ) TEMP
+GROUP BY ID
+HAVING COUNT(FLAG) >= 3
